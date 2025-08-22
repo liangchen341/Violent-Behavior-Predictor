@@ -67,3 +67,6 @@ htmlcov/
 .coverage*
 .pybuilder/
 
+
+# Track selected data files
+!merged_patient_data.csv
