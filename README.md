@@ -5,7 +5,7 @@ Open-source implementation for hierarchical modeling and late fusion to predict 
 > Data notice: This repository includes a pre-generated synthetic dataset `merged_patient_data.csv` with fully fake records for demo/testing. It contains no real patient data or PII/PHI. Do not use it for clinical decisions.
 
 ### Features
-- Preprocessing (English columns), ordinal mapping for education, duration parsing
+- Preprocessing (column encoding), ordinal mapping for education, duration parsing
 - Univariate statistics in the training set (Mann-Whitney U / Chi-square / Fisher)
 - Separate logistic regression for static and behavioral features (statsmodels)
 - Probability-level weighted late fusion and optional score calibration
@@ -16,7 +16,7 @@ Open-source implementation for hierarchical modeling and late fusion to predict 
 1. Install dependencies (see `requirements.txt`)
 2. Prepare data:
    - Option A: generate synthetic data: `python generate_synthetic_dataset.py`
-   - Option B: place your own `merged_patient_data.csv` in project root with English columns and target `high_risk_group`
+   - Option B: place your own `merged_patient_data.csv` in project root with target `high_risk_group`
 3. Run CLI (minimal example):
 ```bash
 python cli.py --input merged_patient_data.csv --out hierarchical_model_results --ml_suite
@@ -37,8 +37,8 @@ pip install xgboost
 
 ### Structure
 - `violent_behavior_predictor/`
-  - `constants.py`: feature lists, labels and mappings (English)
-  - `preprocessing.py`: data encoding and subset selection (English)
+  - `constants.py`: feature lists, labels and mappings
+  - `preprocessing.py`: data encoding and subset selection
   - `stats_analysis.py`: univariate statistics
   - `logit_model.py`: statsmodels logistic regression wrapper
   - `evaluation.py`: metric computation and probability calibration
@@ -53,7 +53,7 @@ pip install xgboost
 
 - Fusion weight can be provided via `--weight_static`, or selected via built-in grid search.
 
-### Dataset schema (English)
+### Dataset schema
 - Required target column:
   - `high_risk_group` (0/1)
 - Optional grouping column:
