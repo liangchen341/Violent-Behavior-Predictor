@@ -26,13 +26,12 @@ def main() -> None:
     parser.add_argument("--out", default="hierarchical_model_results", help="Output directory")
     parser.add_argument("--test_size", type=float, default=0.3, help="Test set ratio")
     parser.add_argument("--seed", type=int, default=42, help="Random seed")
-    parser.add_argument("--balance", choices=["under", "over", "smote"], default=None, help="Class balancing method for training set")
     parser.add_argument("--weight_static", type=float, default=0.5, help="Fusion weight for static model (0-1)")
     parser.add_argument("--calibrate", action="store_true", help="Calibrate output probabilities (to mean=0.5, std=0.15)")
     parser.add_argument("--ml_suite", action="store_true", help="Run additional ML baselines and save metrics")
     args = parser.parse_args()
 
-    out_dir = Path(args.out if args.balance is None else f"{args.out}_{args.balance}")
+    out_dir = Path(args.out)
     out_dir.mkdir(parents=True, exist_ok=True)
 
     df = pd.read_csv(args.input)

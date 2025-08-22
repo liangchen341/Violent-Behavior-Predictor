@@ -50,7 +50,7 @@ pip install xgboost
 ### Reproducibility and notes
 - Split uses `train_test_split(..., stratify=y)` unless `patient_id` is present, then group-wise split.
 - We only drop NA on used columns; you can switch to imputation in `preprocessing.py` if preferred.
-- Class imbalance handling via `--balance` (train only; test remains intact).
+
 - Fusion weight can be provided via `--weight_static`, or selected via built-in grid search.
 
 ### Dataset schema (English)
